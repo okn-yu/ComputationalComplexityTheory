@@ -1,16 +1,20 @@
 package com.company;
 
-import java.util.Iterator;
 import com.company.component.State;
+import com.company.component.StateSet;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
-        State state = new State();
-        state.addState("a");
-        state.addState("b");
+        State<String> q = new State<String>();
+        q.setValue("test");
 
-        state.list();
+        StateSet Q = new StateSet();
+        Q.addState(q);
+        //state.addState("b");
+        Q.list();
+        System.out.println(Q.toString());
     }
 }

@@ -1,25 +1,34 @@
 package com.company.component;
 
-import java.util.HashSet;
-import java.util.Iterator;
+import lombok.Getter;
+import lombok.Setter;
 
-public class State {
+/*
+状態qは以下の場合がある:
+ 整数:1, 2, 3...
+ 文字:"a", "b", "c"...
+ 文字列:"abc", "de", "fghi"...
+ 集合:{a}, {}, {a, b}
 
-    private HashSet<String> set;
+ いやオートマトンを考えた場合は状態はお互いに識別できればよいので、特に指定はないのか！
+ */
+
+
+public class State<T> {
+
+    @Getter
+    private T value;
+
+    public void setValue(T val){
+        value =  val;
+    }
+
+//
+//    public T getQ(){
+//        return value;
+//    }
 
     public State(){
-        set = new HashSet<String>();
-    }
 
-    public void addState(String element){
-        set.add(element);
-    }
-
-    public void list(){
-        Iterator it = set.iterator();
-
-        while(it.hasNext()) {
-            System.out.println(it.next());
-        }
     }
 }
