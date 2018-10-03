@@ -3,16 +3,22 @@ package com.company.component;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class State {
+public class StateSet {
 
-    private HashSet<String> set;
+    private HashSet<State> set;
 
-    public State(){
-        set = new HashSet<String>();
+    public StateSet(){
+        set = new HashSet<State>();
     }
 
-    public void addState(String element){
-        set.add(element);
+    public void addState(State q){
+        set.add(q);
+    }
+
+
+    @Override
+    public String toString(){
+        return "sample";
     }
 
     public void list(){
