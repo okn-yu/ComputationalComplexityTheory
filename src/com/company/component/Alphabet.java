@@ -1,10 +1,5 @@
 package com.company.component;
 
-/*
-オートマトンに入力される文字の集合
- */
-
-
 import java.util.Collections;
 import java.util.HashSet;
 

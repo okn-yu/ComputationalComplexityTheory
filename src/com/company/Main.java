@@ -1,13 +1,11 @@
 package com.company;
 
 import com.company.automaton.DeterministicFiniteAutomaton;
-
 import com.company.component.AcceptStateSet;
 import com.company.component.Alphabet;
 import com.company.component.State;
 import com.company.component.StateSet;
 import com.company.component.TransitionFunction;
-
 
 public class Main {
 
@@ -26,10 +24,8 @@ public class Main {
         delta.setArrow(q2, '0', q1);
         delta.setArrow(q2, '1', q2);
 
-
         DeterministicFiniteAutomaton DFA = new DeterministicFiniteAutomaton(Q, Sigma, delta, q1, F);
 
-        //System.out.println(q1.getArrow('1'));
         System.out.println(DFA.isAccept("010"));
     }
 }

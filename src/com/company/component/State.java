@@ -1,11 +1,5 @@
 package com.company.component;
 
-/*
-状態qは"q+整数値"で表記されるString型とする
-例: q0, q1, q2....
- */
-
-
 import java.util.HashMap;
 
 public class State {
@@ -25,4 +19,5 @@ public class State {
     public String toString() {
         return stateName;
     }
+
 }

@@ -24,4 +24,5 @@ public class TransitionFunction {
         innerArrow.put(src, c);
         return Arrow.get(innerArrow);
     }
+
 }
