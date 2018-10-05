@@ -30,6 +30,6 @@ public class Main {
         DeterministicFiniteAutomaton DFA = new DeterministicFiniteAutomaton(Q, Sigma, delta, q1, F);
 
         //System.out.println(q1.getArrow('1'));
-        System.out.println(DFA.input("010"));
+        System.out.println(DFA.isAccept("010"));
     }
 }

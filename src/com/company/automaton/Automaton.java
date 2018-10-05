@@ -18,6 +18,6 @@ abstract class Automaton {
         this.F = F;
     }
 
-    abstract boolean input(String str);
+    abstract boolean isAccept(String str);
 
 }

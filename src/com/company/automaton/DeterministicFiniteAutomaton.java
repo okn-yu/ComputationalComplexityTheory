@@ -9,7 +9,7 @@ public class DeterministicFiniteAutomaton extends Automaton{
     }
 
     @Override
-    public boolean input(String str){
+    public boolean isAccept(String str){
 
         State currentState = q0;
 
