@@ -2,13 +2,22 @@ package com.company.automaton;
 
 import com.company.component.*;
 
-public class Automaton {
+abstract class Automaton {
 
-    public Automaton(State Q, Alphabet Sigma){
+    protected StateSet Q;
+    protected Alphabet Sigma;
+    protected TransitionFunction delta;
+    protected State q0;
+    protected AcceptStateSet F;
+
+    public Automaton(StateSet Q, Alphabet Sigma, TransitionFunction delta, State q0, AcceptStateSet F){
+        this.Q = Q;
+        this.Sigma = Sigma;
+        this.delta = delta;
+        this.q0 = q0;
+        this.F = F;
     }
 
-    public boolean input(){
-       return true;
-    }
+    abstract boolean input(String str);
 
 }

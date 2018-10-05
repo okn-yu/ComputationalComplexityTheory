@@ -1,34 +1,28 @@
 package com.company.component;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /*
-状態qは以下の場合がある:
- 整数:1, 2, 3...
- 文字:"a", "b", "c"...
- 文字列:"abc", "de", "fghi"...
- 集合:{a}, {}, {a, b}
-
- いやオートマトンを考えた場合は状態はお互いに識別できればよいので、特に指定はないのか！
+状態qは"q+整数値"で表記されるString型とする
+例: q0, q1, q2....
  */
 
 
-public class State<T> {
+import java.util.HashMap;
 
-    @Getter
-    private T value;
+public class State {
 
-    public void setValue(T val){
-        value =  val;
+    private String stateName;
+
+    public State(String name) {
+
+        if (name.charAt(0) == 'q') {
+            stateName = name;
+        } else {
+            throw new NullPointerException("stateName[0] is not q!");
+        }
     }
 
-//
-//    public T getQ(){
-//        return value;
-//    }
-
-    public State(){
-
+    @Override
+    public String toString() {
+        return stateName;
     }
 }

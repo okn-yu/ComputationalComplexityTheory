@@ -1,31 +1,23 @@
 package com.company.component;
 
 import java.util.HashSet;
-import java.util.Iterator;
+
 
 public class StateSet {
 
-    private HashSet<State> set;
+    protected HashSet<State> set;
 
-    public StateSet(){
+    public StateSet(State... state) {
         set = new HashSet<State>();
-    }
 
-    public void addState(State q){
-        set.add(q);
-    }
-
-
-    @Override
-    public String toString(){
-        return "sample";
-    }
-
-    public void list(){
-        Iterator it = set.iterator();
-
-        while(it.hasNext()) {
-            System.out.println(it.next());
+        for (State s : state) {
+            set.add(s);
         }
     }
+
+    public boolean contain(State s){
+        return set.contains(s);
+    }
+
+
 }
