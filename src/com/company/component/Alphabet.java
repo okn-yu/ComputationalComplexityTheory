@@ -8,10 +8,8 @@ public class Alphabet {
     private HashSet<Character> set;
 
     public Alphabet(Character... characters) {
-
         set = new HashSet<Character>();
         Collections.addAll(set, characters);
-
     }
 
 }

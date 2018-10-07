@@ -15,9 +15,8 @@ public class State {
         }
     }
 
-    @Override
-    public String toString() {
-        return stateName;
+    public void show() {
+        System.out.print(stateName);
     }
 
 }
