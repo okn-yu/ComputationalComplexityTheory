@@ -8,15 +8,19 @@ abstract class Automaton {
     protected Alphabet Sigma;
     protected TransitionFunction delta;
     protected State q0;
-    protected AcceptStateSet F;
+    protected StateSet F;
 
-    public Automaton(StateSet Q, Alphabet Sigma, TransitionFunction delta, State q0, AcceptStateSet F){
+    public Automaton(StateSet Q, Alphabet Sigma, TransitionFunction delta, State q0, StateSet F){
         this.Q = Q;
         this.Sigma = Sigma;
         this.delta = delta;
         this.q0 = q0;
         this.F = F;
     }
+
+    public boolean isValidString(String str){
+        return true;
+    };
 
     abstract boolean isAccept(String str);
 

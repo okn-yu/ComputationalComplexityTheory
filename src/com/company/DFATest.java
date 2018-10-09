@@ -1,12 +1,5 @@
 package com.company;
 
-import com.company.automaton.DeterministicFiniteAutomaton;
-import com.company.component.AcceptStateSet;
-import com.company.component.Alphabet;
-import com.company.component.State;
-import com.company.component.StateSet;
-import com.company.component.TransitionFunction;
-
 public class DFATest {
 //    State q1 = new State("q1");
 //    State q2 = new State("q2");

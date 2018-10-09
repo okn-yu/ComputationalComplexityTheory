@@ -15,6 +15,10 @@ public class StateSet {
         }
     }
 
+    public HashSet<State> getSet(){
+        return set;
+    }
+
     public StateSet(HashSet<State> state){
         set = new HashSet<State>();
 

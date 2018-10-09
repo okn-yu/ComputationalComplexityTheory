@@ -4,8 +4,15 @@ import com.company.component.*;
 
 public class DeterministicFiniteAutomaton extends Automaton{
 
-    public DeterministicFiniteAutomaton(StateSet Q, Alphabet Sigma, TransitionFunction delta, State q0, AcceptStateSet F){
+    public DeterministicFiniteAutomaton(StateSet Q, Alphabet Sigma, TransitionFunction delta, State q0, StateSet F){
         super(Q, Sigma, delta, q0, F);
+        checkDelta();
+    }
+
+    private void checkDelta(){
+        if( ! Q.getSet().containsAll(F.getSet())){
+            throw new IllegalArgumentException ("F is not subset.");
+        }
     }
 
     @Override
@@ -14,7 +21,7 @@ public class DeterministicFiniteAutomaton extends Automaton{
         State currentState = q0;
 
         for(int i = 0; i < str.length(); i++){
-            currentState = delta.getArrow(currentState, str.charAt(i));
+            currentState = delta.getDstState(currentState, str.charAt(i));
             System.out.println(currentState);
         }
 
