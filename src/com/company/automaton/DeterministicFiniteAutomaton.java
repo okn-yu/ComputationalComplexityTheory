@@ -1,12 +1,15 @@
 package com.company.automaton;
 
-import com.company.component.*;
+import com.company.alphabet.Alphabet;
+import com.company.state.*;
+import com.company.transitionfunction.*;
 
-public class DeterministicFiniteAutomaton extends Automaton{
+public class DeterministicFiniteAutomaton extends Automaton<DFATransitionFunction>{
 
-    public DeterministicFiniteAutomaton(StateSet Q, Alphabet Sigma, TransitionFunction delta, State q0, StateSet F){
+    public DeterministicFiniteAutomaton(StateSet Q, Alphabet Sigma, DFATransitionFunction delta, State q0, StateSet F){
         super(Q, Sigma, delta, q0, F);
-        checkDelta();
+        //RcheckDelta();
+        //System.out.println(delta);
     }
 
     private void checkDelta(){
@@ -25,7 +28,7 @@ public class DeterministicFiniteAutomaton extends Automaton{
             System.out.println(currentState);
         }
 
-        return F.contain(currentState);
+        return this.F.contain(currentState);
     }
 
 }

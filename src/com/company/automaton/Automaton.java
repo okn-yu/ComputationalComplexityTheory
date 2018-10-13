@@ -1,16 +1,18 @@
 package com.company.automaton;
 
-import com.company.component.*;
+import com.company.alphabet.Alphabet;
+import com.company.state.*;
+import com.company.transitionfunction.*;
 
-abstract class Automaton {
+abstract class Automaton<T> {
 
     protected StateSet Q;
     protected Alphabet Sigma;
-    protected TransitionFunction delta;
+    protected T delta;
     protected State q0;
     protected StateSet F;
 
-    public Automaton(StateSet Q, Alphabet Sigma, TransitionFunction delta, State q0, StateSet F){
+    public Automaton(StateSet Q, Alphabet Sigma, T delta, State q0, StateSet F){
         this.Q = Q;
         this.Sigma = Sigma;
         this.delta = delta;
