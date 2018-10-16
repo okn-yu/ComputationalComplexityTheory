@@ -4,7 +4,7 @@ import com.company.alphabet.Alphabet;
 import com.company.state.*;
 import com.company.transitionfunction.*;
 
-abstract class Automaton<T> {
+public abstract class Automaton<T> {
 
     protected StateSet Q;
     protected Alphabet Sigma;
@@ -24,6 +24,6 @@ abstract class Automaton<T> {
         return true;
     };
 
-    abstract boolean isAccept(String str);
+    public abstract boolean isAccept(String str);
 
 }

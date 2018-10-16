@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.automaton.DeterministicFiniteAutomaton;
+import com.company.automaton.*;
 import com.company.alphabet.Alphabet;
 import com.company.automaton.*;
 import com.company.state.*;
@@ -33,7 +33,7 @@ public class DFATest {
     }
 
     public void run(String str) {
-        DeterministicFiniteAutomaton DFA = new DeterministicFiniteAutomaton(Q, Sigma, delta, initState, F);
+        Automaton DFA = new DeterministicFiniteAutomaton(Q, Sigma, delta, initState, F);
         System.out.println(DFA.isAccept(str));
     }
 }
