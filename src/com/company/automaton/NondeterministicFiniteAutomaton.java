@@ -24,13 +24,24 @@ public class NondeterministicFiniteAutomaton extends Automaton<NFATransitionFunc
         for(int i = 0; i < str.length(); i++){
             currentStateSet = delta.getDstState(currentState, str.charAt(i));
             for(State s: currentStateSet.getSet()){
-                Thread th = new Thread();
 
             }
             System.out.println(currentState);
         }
 
         return F.contain(currentState);
+    }
+
+    private void test(StateSet ss, String str){
+
+        StateSet nextStateSet = new StateSet();
+
+        for(State s: ss.getSet()){
+            nextStateSet = delta.getDstState(s, str.charAt(0));
+        }
+
+
+
     }
 
 }

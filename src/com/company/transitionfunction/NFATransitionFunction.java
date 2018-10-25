@@ -6,7 +6,7 @@ import com.company.state.StateSet;
 
 import java.util.HashMap;
 
-public class NFATransitionFunction extends TransitionFunction<StateSet>{
+public class NFATransitionFunction extends TransitionFunction<StateSet> {
 
     private StateSet Q;
     private Alphabet Sigma;
@@ -31,4 +31,5 @@ public class NFATransitionFunction extends TransitionFunction<StateSet>{
         innerArrow.put(src, c);
         return Arrow.get(innerArrow);
     }
+
 }
