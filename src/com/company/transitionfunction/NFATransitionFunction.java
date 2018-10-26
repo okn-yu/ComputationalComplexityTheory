@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 public class NFATransitionFunction extends TransitionFunction<StateSet> {
 
-    private StateSet Q;
-    private Alphabet Sigma;
+    //private StateSet Q;
+    //private Alphabet Sigma;
     private HashMap<HashMap<State, Character>, StateSet> Arrow = new HashMap<HashMap<State, Character>, StateSet>();
 
     public NFATransitionFunction(StateSet Q, Alphabet Sigma){

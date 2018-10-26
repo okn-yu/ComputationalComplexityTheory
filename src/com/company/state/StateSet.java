@@ -19,20 +19,35 @@ public class StateSet {
         return set;
     }
 
-    public StateSet(HashSet<State> state){
+    public StateSet(HashSet<State> ss){
         set = new HashSet<State>();
 
-        for (State s : state) {
+        for (State s : ss) {
             set.add(s);
         }
     }
 
-    protected void add(State s){
+    public void add(State s){
         set.add(s);
+    }
+
+    public void add(StateSet ss){
+        for(State s :ss.set){
+            this.add(s);
+        }
     }
 
     public boolean contain(State s){
         return set.contains(s);
+    }
+
+    public boolean contain(StateSet ss){
+        for(State s:ss.set){
+            if(contain(s)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void show(){

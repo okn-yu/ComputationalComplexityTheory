@@ -4,43 +4,39 @@ import com.company.alphabet.Alphabet;
 import com.company.state.*;
 import com.company.transitionfunction.*;
 
-public class NondeterministicFiniteAutomaton extends Automaton<NFATransitionFunction> implements Runnable{
+public class NondeterministicFiniteAutomaton extends Automaton<NFATransitionFunction> {
+
+    private StateSet currentStateSet;
 
     public NondeterministicFiniteAutomaton(StateSet Q, Alphabet Sigma, NFATransitionFunction delta, State q0, StateSet F) {
         super(Q, Sigma, delta, q0, F);
-    }
-
-    @Override
-    public void run(){
-
+        currentStateSet = new StateSet(q0);
     }
 
     @Override
     public boolean isAccept(String str){
 
-        State currentState = q0;
-        StateSet currentStateSet;
-
-        for(int i = 0; i < str.length(); i++){
-            currentStateSet = delta.getDstState(currentState, str.charAt(i));
-            for(State s: currentStateSet.getSet()){
-
-            }
-            System.out.println(currentState);
-        }
-
-        return F.contain(currentState);
+        StateSet initStateSet = new StateSet(q0);
+        return test(initStateSet, str);
     }
 
-    private void test(StateSet ss, String str){
+    private boolean test(StateSet ss, String str){
+
+        if(str.isEmpty()){
+            return false;
+        }
 
         StateSet nextStateSet = new StateSet();
 
         for(State s: ss.getSet()){
-            nextStateSet = delta.getDstState(s, str.charAt(0));
+            nextStateSet.add(delta.getDstState(s, str.charAt(0)));
         }
 
+        if(F.contain(nextStateSet)){
+            return true;
+        }
 
+        return this.test(nextStateSet, str.substring(2));
 
     }
 

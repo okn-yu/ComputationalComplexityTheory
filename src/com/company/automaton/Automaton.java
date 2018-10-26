@@ -11,6 +11,7 @@ public abstract class Automaton<T> {
     protected T delta;
     protected State q0;
     protected StateSet F;
+    //protected T currentState;
 
     public Automaton(StateSet Q, Alphabet Sigma, T delta, State q0, StateSet F){
         this.Q = Q;

@@ -6,8 +6,8 @@ import com.company.state.*;
 
 public class DFATransitionFunction extends TransitionFunction<State>{
 
-    private StateSet Q;
-    private Alphabet Sigma;
+    //private StateSet Q;
+    //private Alphabet Sigma;
     private HashMap<HashMap<State, Character>, State> Arrow = new HashMap<HashMap<State, Character>, State>();
 
     public DFATransitionFunction(StateSet Q, Alphabet Sigma){
