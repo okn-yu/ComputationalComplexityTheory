@@ -26,7 +26,6 @@ public class StateSet {
             set.add(s);
         }
     }
-
     public void add(State s){
         set.add(s);
     }
