@@ -6,15 +6,15 @@ import com.company.state.StateSet;
 
 import java.util.HashMap;
 
-public class NFATransitionFunction extends TransitionFunction<StateSet> {
+abstract class NFATransitionFunction{
 
     //private StateSet Q;
     //private Alphabet Sigma;
     private HashMap<HashMap<State, Character>, StateSet> Arrow = new HashMap<HashMap<State, Character>, StateSet>();
 
-    public NFATransitionFunction(StateSet Q, Alphabet Sigma){
-        super(Q, Sigma);
-    }
+//    public NFATransitionFunction(StateSet Q, Alphabet Sigma){
+//        super(Q, Sigma);
+//    }
 
     public void setArrow(State src, Character c, StateSet dst) {
         HashMap<State, Character> innerArrow = new HashMap<State, Character>();
@@ -31,5 +31,8 @@ public class NFATransitionFunction extends TransitionFunction<StateSet> {
         innerArrow.put(src, c);
         return Arrow.get(innerArrow);
     }
+
+    abstract public void setArrow(String src, Character c, State t);
+
 
 }

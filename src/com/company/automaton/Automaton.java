@@ -4,27 +4,26 @@ import com.company.alphabet.Alphabet;
 import com.company.state.*;
 import com.company.transitionfunction.*;
 
-public abstract class Automaton<T> {
+public class Automaton {
 
     protected StateSet Q;
-    protected Alphabet Sigma;
-    protected T delta;
-    protected State q0;
-    protected StateSet F;
-    //protected T currentState;
+    private State q0;
 
-    public Automaton(StateSet Q, Alphabet Sigma, T delta, State q0, StateSet F){
+    public Automaton(StateSet Q)
+    {
         this.Q = Q;
-        this.Sigma = Sigma;
-        this.delta = delta;
-        this.q0 = q0;
-        this.F = F;
+
+        for(State s: Q){
+            if(s.isInitState){
+                this.q0 =s;
+                break;
+            }
+        }
     }
 
-    public boolean isValidString(String str){
-        return true;
-    };
 
-    public abstract boolean isAccept(String str);
+    public void isAccept(String inputString){
+        System.out.println(q0.transitState(inputString));
+    }
 
 }

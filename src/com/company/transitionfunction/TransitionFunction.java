@@ -15,8 +15,7 @@ abstract public class TransitionFunction<T> {
         this.Sigma = Sigma;
     }
 
-    abstract public void setArrow(State src, Character c, T t);
-    abstract public HashMap<HashMap<State, Character>, T> getArrow(State src, Character c);
-    abstract public T getDstState(State src, Character c);
+    abstract public void setArrow(String src, Character c, T t);
+    abstract public T getDstState(String src, Character c);
 
 }

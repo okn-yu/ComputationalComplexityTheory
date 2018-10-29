@@ -1,57 +1,20 @@
 package com.company.state;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.HashSet;
-import java.util.Iterator;
 
-public class StateSet {
+public class StateSet extends HashSet<State> {
 
-    protected HashSet<State> set;
+    public StateSet(State... states) {
 
-    public StateSet(State... state) {
-        set = new HashSet<State>();
-
-        for (State s : state) {
-            set.add(s);
-        }
-    }
-
-    public HashSet<State> getSet(){
-        return set;
-    }
-
-    public StateSet(HashSet<State> ss){
-        set = new HashSet<State>();
-
-        for (State s : ss) {
-            set.add(s);
-        }
-    }
-    public void add(State s){
-        set.add(s);
-    }
-
-    public void add(StateSet ss){
-        for(State s :ss.set){
-            this.add(s);
-        }
-    }
-
-    public boolean contain(State s){
-        return set.contains(s);
-    }
-
-    public boolean contain(StateSet ss){
-        for(State s:ss.set){
-            if(contain(s)){
-                return true;
-            }
-        }
-        return false;
+        List<State> list = Arrays.asList(states);
+        this.addAll(list);
     }
 
     public void show(){
         System.out.print("StateSet: { ");
-        for(State s : set){
+        for(State s : this){
             s.show();
             System.out.print(" ");
         }

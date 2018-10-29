@@ -1,31 +1,34 @@
 package com.company;
 
-import com.company.automaton.DeterministicFiniteAutomaton;
-import com.company.alphabet.Alphabet;
-import com.company.automaton.*;
+import com.company.automaton.Automaton;
 import com.company.state.*;
-import com.company.transitionfunction.DFATransitionFunction;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        DFATest dfaTest = new DFATest();
-        dfaTest.run("011");
+        //DFATest dfaTest = new DFATest();
+        //dfaTest.run("011");
 
+        //DFATest
+        State q1 = new State("q1", true, false);
+        State q2 = new State("q2", false, true);
+        State q3 = new State("q3", false, true);
 
-        // DFATest
-//        State q1 = new State("q1");
-//        State q2 = new State("q2");
-//        State q3 = new State("q3");
-//
-//        StateSet Q = new StateSet(q1, q2, q3);
+        q1.delta.put('0', q1);
+        q1.delta.put('1', q2);
+        q2.delta.put('0', q1);
+        q2.delta.put('1', q2);
+
+        StateSet Q = new StateSet(q1, q2, q3);
+        Automaton dfa = new Automaton(Q);
+        dfa.isAccept("01");
+
 //        Q.show();
 //        Alphabet Sigma = new Alphabet('1', '2');
 //        StateSet F = new StateSet(q2);
 //
 //        DFATransitionFunction delta = new DFATransitionFunction(Q, Sigma);
-//        delta.setArrow(q1,'0',q1);
 //        delta.setArrow(q1,'1',q2);
 //        delta.setArrow(q2,'0',q1);
 //        delta.setArrow(q2,'1',q2);
