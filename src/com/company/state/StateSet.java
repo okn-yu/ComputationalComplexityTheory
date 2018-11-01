@@ -1,8 +1,8 @@
 package com.company.state;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 
 public class StateSet extends HashSet<State> {
 
@@ -15,7 +15,6 @@ public class StateSet extends HashSet<State> {
     public void show(){
         System.out.print("StateSet: { ");
         for(State s : this){
-            s.show();
             System.out.print(" ");
         }
         System.out.println("}");

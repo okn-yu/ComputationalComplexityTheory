@@ -1,8 +1,6 @@
 package com.company.automaton;
 
-import com.company.alphabet.Alphabet;
 import com.company.state.*;
-import com.company.transitionfunction.*;
 
 public class Automaton {
 
@@ -12,7 +10,6 @@ public class Automaton {
     public Automaton(StateSet Q)
     {
         this.Q = Q;
-
         for(State s: Q){
             if(s.isInitState){
                 this.q0 =s;
@@ -21,9 +18,12 @@ public class Automaton {
         }
     }
 
-
-    public void isAccept(String inputString){
-        System.out.println(q0.transitState(inputString));
+    public void isAccept(String inputString) {
+        try {
+            System.out.println(q0.transitState(inputString));
+        } catch (NextStateException e) {
+            e.printStackTrace();
+        }
     }
 
 }

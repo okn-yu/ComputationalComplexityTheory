@@ -15,7 +15,7 @@ public class Main {
         State q2 = new State("q2", false, true);
         State q3 = new State("q3", false, true);
 
-        q1.delta.put('0', q1);
+        //q1.delta.put('0', q1);
         q1.delta.put('1', q2);
         q2.delta.put('0', q1);
         q2.delta.put('1', q2);
