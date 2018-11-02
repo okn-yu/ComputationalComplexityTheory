@@ -5,7 +5,7 @@ import com.company.state.*;
 public class Automaton {
 
     protected StateSet Q;
-    private State q0;
+    protected State q0;
 
     public Automaton(StateSet Q)
     {

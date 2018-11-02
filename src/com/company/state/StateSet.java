@@ -12,6 +12,8 @@ public class StateSet extends HashSet<State> {
         this.addAll(list);
     }
 
+    public StateSet(){}
+
     public void show(){
         System.out.print("StateSet: { ");
         for(State s : this){
