@@ -1,12 +1,11 @@
 package com.company.automaton;
 
 import com.company.state.*;
+
 import java.util.Deque;
 import java.util.ArrayDeque;
-import java.util.Objects;
 
 public class NFA extends Automaton {
-
 
     public NFA(StateSet Q) {
         super(Q);
@@ -38,20 +37,20 @@ public class NFA extends Automaton {
     */
 
     /* Breadth First Search version. */
-    public void isAccept(String inputString){
+    public void isAccept(String inputString) {
 
-        Deque<State> queue =  new ArrayDeque<State>();
+        Deque<State> queue = new ArrayDeque<State>();
         q0.currentString = inputString;
         queue.offer(q0);
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             State currentState = queue.poll();
             System.out.println("currentState is " + currentState.name + ".");
             System.out.println("currentString is " + currentState.currentString);
 
             if (currentState.currentString.isEmpty()) {
                 System.out.println(currentState.isAcceptState);
-            }else{
+            } else {
                 for (State s : currentState.nextStateSet()) {
                     System.out.println("Next state is " + s.name);
                     queue.offer(s);

@@ -14,12 +14,18 @@ public class StateSet extends HashSet<State> {
 
     public StateSet(){}
 
-    public void show(){
-        System.out.print("StateSet: { ");
+    @Override
+    public String toString(){
+
+        String str = "State set components: { ";
+
         for(State s : this){
-            System.out.print(" ");
+            str += s + " ";
         }
-        System.out.println("}");
+
+        str += "}";
+
+        return str;
     }
 
 }

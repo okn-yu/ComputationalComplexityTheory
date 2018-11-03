@@ -2,7 +2,7 @@ package com.company.automaton;
 
 import com.company.state.*;
 
-public class Automaton {
+abstract public class Automaton {
 
     protected StateSet Q;
     protected State q0;
@@ -16,14 +16,11 @@ public class Automaton {
                 break;
             }
         }
+
+        System.out.println(Q);
+        System.out.println("q0 is " + q0 + ".");
     }
 
-    public void isAccept(String inputString) {
-        try {
-            System.out.println(q0.transitState(inputString));
-        } catch (NextStateException e) {
-            e.printStackTrace();
-        }
-    }
+    abstract public void isAccept(String inputString);
 
 }

@@ -1,4 +1,4 @@
 package com.company.automaton;
 
-public class PushDownAutomaton {
+public class PDA {
 }

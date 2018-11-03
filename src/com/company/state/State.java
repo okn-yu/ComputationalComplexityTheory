@@ -27,7 +27,7 @@ public class State implements Cloneable{
         }
     }
 
-    public State clone(String currentString){
+    private State clone(String currentString) {
 
         State clonedState = null;
 
@@ -39,26 +39,26 @@ public class State implements Cloneable{
             clonedState.currentString = currentString;
             clonedState.deltas = deltas;
 
-        }catch(Exception e){
+        }catch(CloneNotSupportedException e){
             e.printStackTrace();
         }
         return clonedState;
 
     }
 
-    public boolean transitState(String currentString) throws NextStateException {
+    public boolean transitState() throws NextStateException {
 
         if (currentString.isEmpty()) {
             return isAcceptState;
         }
 
-        Character c = currentString.charAt(0);
-        String nextString = currentString.substring(1);
+        State nextState = delta.get(currentString.charAt(0));
 
-        if (Objects.isNull(delta.get(c))) {
-            throw new NextStateException("Current State is " + name + ". " + "Next Character is " + c.toString() + ". ");
+        if (Objects.isNull(nextState)) {
+            throw new NextStateException("Current State is " + name + ". " + "Next Character is " + currentString.substring(1) + ". ");
         } else {
-            return delta.get(c).transitState(nextString);
+            nextState.currentString = currentString.substring(1);
+            return nextState.transitState();
         }
     }
 
@@ -74,6 +74,11 @@ public class State implements Cloneable{
             }
         }
         return clonedStateSet;
+    }
+
+    @Override
+    public String toString(){
+        return name;
     }
 
 }
