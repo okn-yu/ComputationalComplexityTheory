@@ -1,0 +1,61 @@
+@startuml
+
+State --o Automaton
+StateSet --o Automaton
+
+abstract Automaton{
+
+- StateSet Q;
+- Alphabet shigma;
+- {abstract} Hashmap<State, Charactor, <T> delta;
+- State q0;
+- StateSet F;
+
++ Automaton(StateSet Q);
++ {abstract} boolean isAccept(String inputString);
++ String toString();
+
+}
+
+abstract State{
+- String name;
+- boolean isAccepState;
+- boolean isInitState;
+- String currentString;
+
++ State State(String name, boolean isAcceptState, boolean isInitState);
++ State translate(String currentString);
++ String toString();
+}
+
+class HashSet
+
+HashSet <|-- StateSet
+State --o StateSet
+
+class StateSet{
+- String name;
+
++ StateSet(State...states);
++ String toString();
+
+}
+
+Automaton <|-- DFA
+class DFA{
+- HashMap<State, Character, State> delata;
++ boolean isAccept(String inputString);
+}
+
+Automaton <|-- NFA
+class NFA{
+- HashMap<State, Character, StateSet> delata;
++ boolean isAccept(String inputString);
+}
+
+Automaton <|-- PDA
+class PDA{
++ boolean isAccept(String inputString);
+}
+
+@enduml
