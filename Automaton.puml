@@ -1,13 +1,14 @@
 @startuml
 
+InputAlphabet --o Automaton
 State --o Automaton
 StateSet --o Automaton
 
 abstract Automaton{
-
+- String name
 - StateSet Q;
-- Alphabet shigma;
-- {abstract} Hashmap<State, Charactor, <T> delta;
+- InputAlphabet Sigma;
+- {abstract} HashMap<State, Charactor, <T> delta;
 - State q0;
 - StateSet F;
 
@@ -15,6 +16,10 @@ abstract Automaton{
 + {abstract} boolean isAccept(String inputString);
 + String toString();
 
+}
+
+class InputAlphabet{
++ HashSet<Character> alphabet;
 }
 
 abstract State{
@@ -28,9 +33,7 @@ abstract State{
 + String toString();
 }
 
-class HashSet
 
-HashSet <|-- StateSet
 State --o StateSet
 
 class StateSet{
@@ -56,6 +59,25 @@ class NFA{
 Automaton <|-- PDA
 class PDA{
 + boolean isAccept(String inputString);
+}
+
+InputAlphabet --o TuringMaschine
+State --o TuringMaschine
+StateSet --o TuringMaschine
+TapeAlphabet --o TuringMaschine
+
+class TuringMaschine{
+- name;
+- StateSet Q;
+- InputAlphabet Sigma;
+- TapeAlphabet Gamma;
+- HashMap<HashMap<Q, Gamma>, HashMap<Q, Gamma, {L, R}>> delta;
+- State q0;
+- State qAccept;
+- State qReject;
+
++ TuringMaschine(StateSet Q, Alphabet Sigma, Tape Gamma, HashMap delta, State q0, State qAccept, State qReject);
++ boolean isAccept(Tape inputTape);
 }
 
 @enduml
