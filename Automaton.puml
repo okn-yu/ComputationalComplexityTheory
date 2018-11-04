@@ -1,16 +1,14 @@
 @startuml
 
 InputAlphabet --o Automaton
-State --o Automaton
-StateSet --o Automaton
 
 abstract Automaton{
 - String name
-- StateSet Q;
+- HashSet<String> Q;
 - InputAlphabet Sigma;
-- {abstract} HashMap<State, Charactor, <T> delta;
-- State q0;
-- StateSet F;
+-
+- String q0;
+- HashSet<String> F;
 
 + Automaton(StateSet Q);
 + {abstract} boolean isAccept(String inputString);
@@ -18,35 +16,22 @@ abstract Automaton{
 
 }
 
+Trunsaction -- Automaton
+
+class Trunsaction {
+- String name
+- String currentState
+- Character c
+- String nextString
+}
+
 class InputAlphabet{
 + HashSet<Character> alphabet;
 }
 
-abstract State{
-- String name;
-- boolean isAccepState;
-- boolean isInitState;
-- String currentString;
-
-+ State State(String name, boolean isAcceptState, boolean isInitState);
-+ State translate(String currentString);
-+ String toString();
-}
-
-
-State --o StateSet
-
-class StateSet{
-- String name;
-
-+ StateSet(State...states);
-+ String toString();
-
-}
-
 Automaton <|-- DFA
 class DFA{
-- HashMap<State, Character, State> delata;
+- HashMap<String, Character, Sring> delata;
 + boolean isAccept(String inputString);
 }
 
@@ -62,8 +47,6 @@ class PDA{
 }
 
 InputAlphabet --o TuringMaschine
-State --o TuringMaschine
-StateSet --o TuringMaschine
 TapeAlphabet --o TuringMaschine
 
 class TuringMaschine{
