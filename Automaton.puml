@@ -1,33 +1,29 @@
 @startuml
 
-InputAlphabet --o Automaton
 
 abstract Automaton{
-- String name
+- String name;
 - HashSet<String> Q;
 - InputAlphabet Sigma;
--
+- HashSet<Transaction> delta;
 - String q0;
 - HashSet<String> F;
 
 + Automaton(StateSet Q);
 + {abstract} boolean isAccept(String inputString);
++ String convert2Tape();
 + String toString();
 
 }
 
-Trunsaction -- Automaton
+Transaction --o Automaton
 
-class Trunsaction {
-- String name
-- String currentState
-- Character c
-- String nextString
+class Transaction<S, D> {
+- HashSet< S, D > transaction;
++ D getNextState(Character c, S);
++ void setNextState(Character c, D);
 }
 
-class InputAlphabet{
-+ HashSet<Character> alphabet;
-}
 
 Automaton <|-- DFA
 class DFA{
@@ -38,29 +34,34 @@ class DFA{
 Automaton <|-- NFA
 class NFA{
 - HashMap<State, Character, StateSet> delata;
++ DFA convert2DFA();
 + boolean isAccept(String inputString);
 }
 
 Automaton <|-- PDA
 class PDA{
++ HashSet<String> Gamma;
 + boolean isAccept(String inputString);
 }
 
-InputAlphabet --o TuringMaschine
-TapeAlphabet --o TuringMaschine
+Automaton <-- TuringMaschine
+
+Transaction --o TuringMaschine
 
 class TuringMaschine{
-- name;
-- StateSet Q;
-- InputAlphabet Sigma;
-- TapeAlphabet Gamma;
+- String name;
+- HashSet<String> Q;
+- HashSet<String> Sigma;
+- HashSet<String> Gamma;
 - HashMap<HashMap<Q, Gamma>, HashMap<Q, Gamma, {L, R}>> delta;
-- State q0;
-- State qAccept;
-- State qReject;
+- String q0;
+- Sttring qAccept;
+- String qReject;
 
 + TuringMaschine(StateSet Q, Alphabet Sigma, Tape Gamma, HashMap delta, State q0, State qAccept, State qReject);
-+ boolean isAccept(Tape inputTape);
++ void reset();
++ void loadProgram(String program);
++ boolean isAccept(String inputTape);
 }
 
 @enduml
