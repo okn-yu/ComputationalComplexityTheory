@@ -1,11 +1,10 @@
 @startuml
 
-
-abstract Automaton{
+abstract Automaton<S, D>{
 - String name;
 - HashSet<String> Q;
 - InputAlphabet Sigma;
-- HashSet<Transaction> delta;
+- HashMap<S, D> delta;
 - String q0;
 - HashSet<String> F;
 
@@ -16,44 +15,31 @@ abstract Automaton{
 
 }
 
-Transaction --o Automaton
-
-class Transaction<S, D> {
-- HashSet< S, D > transaction;
-+ D getNextState(Character c, S);
-+ void setNextState(Character c, D);
-}
-
-
 Automaton <|-- DFA
-class DFA{
-- HashMap<String, Character, Sring> delata;
+class DFA<Pair<String, Character>, String>{
 + boolean isAccept(String inputString);
 }
 
 Automaton <|-- NFA
-class NFA{
-- HashMap<State, Character, StateSet> delata;
+class NFA<Pair<String, Character>, HashSet<String>>{
 + DFA convert2DFA();
 + boolean isAccept(String inputString);
 }
 
 Automaton <|-- PDA
-class PDA{
+class PDA<Triplet<String, String, Character>, Pair<String, String>>{
 + HashSet<String> Gamma;
 + boolean isAccept(String inputString);
 }
 
 Automaton <-- TuringMaschine
 
-Transaction --o TuringMaschine
-
 class TuringMaschine{
 - String name;
 - HashSet<String> Q;
 - HashSet<String> Sigma;
 - HashSet<String> Gamma;
-- HashMap<HashMap<Q, Gamma>, HashMap<Q, Gamma, {L, R}>> delta;
+- HashMap<Pair<String, String>, Triplet<String, String, Character>> delta;
 - String q0;
 - Sttring qAccept;
 - String qReject;
