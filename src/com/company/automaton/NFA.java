@@ -1,61 +1,30 @@
 package com.company.automaton;
 
-import com.company.state.*;
 
-import java.util.Deque;
-import java.util.ArrayDeque;
+import com.company.util.Pair;
 
-public class NFA extends Automaton {
+import java.util.HashMap;
+import java.util.HashSet;
 
-    public NFA(StateSet Q) {
-        super(Q);
+public class NFA extends Automaton<Pair, HashSet<String>> {
+
+    public NFA(String name, HashSet<String> Q, HashSet<Character> inputAlphabet, HashMap<Pair, HashSet<String>> delta, String q0, HashSet<String> F) {
+        super(name, Q, inputAlphabet, delta, q0, F);
     }
 
-    /* Depth First Search version. */
-    /*
-     public void isAccept(String inputString){
-
-        Deque<State> stack =  new ArrayDeque<State>();
-        q0.currentString = inputString;
-        stack.push(q0);
-
-        while(!stack.isEmpty()) {
-            State currentState = stack.pop();
-            System.out.println("currentState is " + currentState.name + ".");
-            System.out.println("currentString is " + currentState.currentString);
-
-            if (currentState.currentString.isEmpty()) {
-                System.out.println(currentState.isAcceptState);
-            }else{
-                for (State s : currentState.nextStateSet()) {
-                    System.out.println("Next state is " + s.name);
-                    stack.push(s);
-                }
-            }
-        }
+    @Override
+    public boolean isAccept(String inputAlphabet) {
+        return true;
     }
-    */
 
-    /* Breadth First Search version. */
-    public void isAccept(String inputString) {
-
-        Deque<State> queue = new ArrayDeque<State>();
-        q0.currentString = inputString;
-        queue.offer(q0);
-
-        while (!queue.isEmpty()) {
-            State currentState = queue.poll();
-            System.out.println("currentState is " + currentState.name + ".");
-            System.out.println("currentString is " + currentState.currentString);
-
-            if (currentState.currentString.isEmpty()) {
-                System.out.println(currentState.isAcceptState);
-            } else {
-                for (State s : currentState.nextStateSet()) {
-                    System.out.println("Next state is " + s.name);
-                    queue.offer(s);
-                }
-            }
-        }
+    @Override
+    public String convert2Tape() {
+        return "test";
     }
+
+    @Override
+    public String toString() {
+        return "test";
+    }
+
 }

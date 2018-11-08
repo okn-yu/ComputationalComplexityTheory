@@ -1,14 +1,15 @@
 @startuml
 
-abstract Automaton<S, D>{
+abstract Automaton {
 - String name;
 - HashSet<String> Q;
-- InputAlphabet Sigma;
+- HashSet<Character>  Sigma;
 - HashMap<S, D> delta;
 - String q0;
 - HashSet<String> F;
 
 + Automaton(StateSet Q);
++ void is
 + {abstract} boolean isAccept(String inputString);
 + String convert2Tape();
 + String toString();
@@ -16,18 +17,18 @@ abstract Automaton<S, D>{
 }
 
 Automaton <|-- DFA
-class DFA<Pair<String, Character>, String>{
+class DFA {
 + boolean isAccept(String inputString);
 }
 
 Automaton <|-- NFA
-class NFA<Pair<String, Character>, HashSet<String>>{
+class NFA {
 + DFA convert2DFA();
 + boolean isAccept(String inputString);
 }
 
 Automaton <|-- PDA
-class PDA<Triplet<String, String, Character>, Pair<String, String>>{
+class PDA {
 + HashSet<String> Gamma;
 + boolean isAccept(String inputString);
 }
@@ -48,6 +49,12 @@ class TuringMaschine{
 + void reset();
 + void loadProgram(String program);
 + boolean isAccept(String inputTape);
+}
+
+class Pair {
+}
+
+class Triple {
 }
 
 @enduml

@@ -1,26 +1,52 @@
 package com.company.automaton;
 
-import com.company.state.*;
+import java.rmi.NoSuchObjectException;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Objects;
 
-abstract public class Automaton {
+abstract public class Automaton<S, D> {
 
-    protected StateSet Q;
-    protected State q0;
+    protected String name;
+    protected HashSet<String> Q;
+    protected HashSet<Character> inputAlphabet;
+    protected HashMap<S, D> delta;
+    protected String q0;
+    protected HashSet<String> F;
 
-    public Automaton(StateSet Q)
-    {
+    public Automaton(String name, HashSet<String> Q, HashSet<Character> inputAlphabet, HashMap<S, D> delta, String q0, HashSet<String> F) {
+        this.name = name;
         this.Q = Q;
-        for(State s: Q){
-            if(s.isInitState){
-                this.q0 =s;
-                break;
-            }
-        }
-
-        System.out.println(Q);
-        System.out.println("q0 is " + q0 + ".");
+        this.inputAlphabet = inputAlphabet;
+        this.delta = delta;
+        this.q0 = q0;
+        this.F = F;
     }
 
-    abstract public void isAccept(String inputString);
+    protected void checkInputString(String inputString) {
+        if (inputString.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
 
+        for (int n = 0; n < inputString.length(); n++) {
+            if (!inputAlphabet.contains(inputString.charAt(n))) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    protected D getNextState(S input) {
+        D dstState = delta.get(input);
+
+        if (Objects.isNull(dstState)) {
+            throw new NullPointerException();
+        }
+
+        return dstState;
+    }
+
+    abstract public boolean isAccept(String inputString);
+    abstract public String convert2Tape();
+    abstract public String toString();
 }

@@ -1,40 +1,37 @@
 package com.company;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+
 import com.company.automaton.*;
-import com.company.state.*;
+import com.company.util.*;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
-        /* DFATest */
-        State q1 = new State("q1", true, false);
-        State q2 = new State("q2", false, true);
-        State q3 = new State("q3", false, true);
+        String name = "test";
+        HashSet<String> Q = new HashSet<>();
+        Collections.addAll(Q, "q0", "q1", "q2");
 
-        q1.delta.put('0', q1);
-        q1.delta.put('1', q2);
-        q2.delta.put('0', q1);
-        q2.delta.put('1', q2);
+        HashSet<Character> inputAlphabet = new HashSet<>();
+        Collections.addAll(inputAlphabet, '0', '1');
 
-        StateSet Q1 = new StateSet(q1, q2, q3);
-        Automaton dfa = new DFA(Q1);
-        dfa.isAccept("01");
+        HashMap<Pair, String> delta = new HashMap<>();
+        delta.put(new Pair<>("q0", '0'), "q1");
+        delta.put(new Pair<>("q0", '1'), "q0");
+        delta.put(new Pair<>("q1", '0'), "q1");
+        delta.put(new Pair<>("q1", '1'), "q0");
 
-        /* NFATest */
-        State q4 = new State("q4", true, false);
-        State q5 = new State("q5", false, false);
-        State q6 = new State("q6", false, true);
-        State q7 = new State("q7", false, true);
+        String q0 = "q0";
 
-        StateSet Q2 = new StateSet(q4, q5, q6, q7);
+        HashSet<String> F = new HashSet<String>();
+        Collections.addAll(F, "q0");
 
-        q4.deltas.put('0', new StateSet(q4, q6));
-        q5.deltas.put('0', new StateSet(q6));
-        q6.deltas.put('0', new StateSet(q5, q6));
-
-        Automaton nfa = new NFA(Q2);
-        nfa.isAccept("00");
+        Automaton dfa = new DFA(name, Q, inputAlphabet, delta, q0, F);
+        System.out.println(dfa.isAccept("00"));
 
     }
 }
