@@ -13,15 +13,16 @@ public class DFA extends Automaton <Pair, String>{
     }
 
     @Override
-    public boolean isAccept(String inputAlphabet) {
+    public boolean isAccept(String inputString) {
 
-        checkInputString(inputAlphabet);
+        checkInputString(inputString);
 
         String currentState = q0;
 
-        while (!inputAlphabet.isEmpty()) {
-            currentState = getNextState(new Pair<String, Character>(currentState, inputAlphabet.charAt(0)));
-            inputAlphabet = inputAlphabet.substring(1);
+        while (!inputString.isEmpty()) {
+            System.out.println("currentState:" + currentState + "," + " inputString: " + inputString);
+            currentState = getNextState(new Pair<String, Character>(currentState, inputString.charAt(0)));
+            inputString = inputString.substring(1);
         }
 
         return F.contains(currentState);
