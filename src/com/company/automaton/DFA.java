@@ -3,13 +3,14 @@ package com.company.automaton;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 
 import com.company.util.*;
 
 public class DFA extends Automaton <Pair, String>{
 
-    public DFA(String name, HashSet<String> Q, HashSet<Character> inputAlphabet, HashMap<Pair, String> delta, String q0, HashSet<String> F) {
-        super(name, Q, inputAlphabet, delta, q0, F);
+    public DFA(String name, HashSet<String> Q, HashSet<Character> Shigma, HashMap<Pair, String> delta, String q0, HashSet<String> F) {
+        super(name, Q, Shigma, delta, q0, F);
     }
 
     @Override
@@ -26,6 +27,15 @@ public class DFA extends Automaton <Pair, String>{
         }
 
         return F.contains(currentState);
+    }
+
+    protected String getNextState(Pair input) {
+        String dstState = delta.get(input);
+
+        if (Objects.isNull(dstState)) {
+            throw new NullPointerException();
+        }
+        return dstState;
     }
 
     @Override

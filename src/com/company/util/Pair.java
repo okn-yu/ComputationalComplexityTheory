@@ -27,4 +27,11 @@ public final class Pair<S, T> {
         return Objects.hash(firstElm, secElm);
     }
 
+    public S getFirstElm(){
+        return firstElm;
+    }
+
+    public T getSecElm(){
+        return secElm;
+    }
 }

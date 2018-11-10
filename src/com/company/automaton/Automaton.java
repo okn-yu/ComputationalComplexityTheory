@@ -8,17 +8,17 @@ import java.util.Objects;
 
 abstract public class Automaton<S, D> {
 
-    protected String name;
-    protected HashSet<String> Q;
-    protected HashSet<Character> inputAlphabet;
-    protected HashMap<S, D> delta;
-    protected String q0;
-    protected HashSet<String> F;
+    protected final String name;
+    protected final HashSet<String> Q;
+    protected final HashSet<Character> Shigma;
+    protected final HashMap<S, D> delta;
+    protected final String q0;
+    protected final HashSet<String> F;
 
-    public Automaton(String name, HashSet<String> Q, HashSet<Character> inputAlphabet, HashMap<S, D> delta, String q0, HashSet<String> F) {
+    public Automaton(String name, HashSet<String> Q, HashSet<Character> Shigma, HashMap<S, D> delta, String q0, HashSet<String> F) {
         this.name = name;
         this.Q = Q;
-        this.inputAlphabet = inputAlphabet;
+        this.Shigma = Shigma;
         this.delta = delta;
         this.q0 = q0;
         this.F = F;
@@ -30,22 +30,13 @@ abstract public class Automaton<S, D> {
         }
 
         for (int n = 0; n < inputString.length(); n++) {
-            if (!inputAlphabet.contains(inputString.charAt(n))) {
+            if (!Shigma.contains(inputString.charAt(n))) {
                 throw new IllegalArgumentException();
             }
         }
     }
 
-    protected D getNextState(S input) {
-        D dstState = delta.get(input);
-
-        if (Objects.isNull(dstState)) {
-            throw new NullPointerException();
-        }
-
-        return dstState;
-    }
-
+    abstract protected D getNextState(S input);
     abstract public boolean isAccept(String inputString);
     abstract public String convert2Tape();
     abstract public String toString();
