@@ -34,4 +34,9 @@ public final class Pair<S, T> {
     public T getSecElm(){
         return secElm;
     }
+
+    @Override
+    public String toString(){
+        return "FirstElm: " + getFirstElm() + ", " + "SecElm: " + getSecElm();
+    }
 }

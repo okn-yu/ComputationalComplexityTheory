@@ -9,7 +9,7 @@ abstract Automaton {
 - HashSet<String> F;
 
 + Automaton(StateSet Q);
-+ void is
+
 + {abstract} boolean isAccept(String inputString);
 + String convert2Tape();
 + String toString();
@@ -23,14 +23,27 @@ class DFA {
 
 Automaton <|-- NFA
 class NFA {
+- HashSet<String> acceptEpsilonCharacter(HashSet<String> currentStateSet);
 + DFA convert2DFA();
 + boolean isAccept(String inputString);
 }
 
-Automaton <|-- PDA
+NFA <|-- PDA
 class PDA {
 + HashSet<String> Gamma;
+- HashSet<Pair> acceptEpsilonCharacter(HashSet<Pair> currentStateSet);
 + boolean isAccept(String inputString);
+}
+
+PDAState --- PDA
+
+class PDAState {
+- String stateName;
+- Deque<Character> stack;
+
++ PDAState(stateName);
++ Triple tripenize(Character ch);
++ PDAState updatePDAState(Pair pair);
 }
 
 Automaton <-- TuringMaschine
