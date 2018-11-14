@@ -13,17 +13,14 @@ public class NFA extends Automaton<Pair, HashSet<String>> {
 
     @Override
     public boolean isAccept(String inputString) {
-
         String currentString = inputString;
         HashSet<String> currentStateSet = new HashSet<String>() {{
             add(q0);
         }};
 
         while (!currentString.isEmpty()) {
-
             System.out.println("currentString: " + currentString);
             System.out.println("currentStateSet:" + currentStateSet);
-
             HashSet<String> nextStateSet = new HashSet<String>();
             Character currentChar = currentString.charAt(0);
 
@@ -37,13 +34,11 @@ public class NFA extends Automaton<Pair, HashSet<String>> {
         }
 
         System.out.println("lastStateSet: " + currentStateSet);
-
         return isAcceptLastStateSet(currentStateSet);
     }
 
     protected HashSet<String> getNextState(Pair input) {
         HashSet<String> nextStateSet = delta.get(input);
-
         if(Objects.nonNull(nextStateSet)) {
             return nextStateSet;
         } else {
@@ -52,7 +47,6 @@ public class NFA extends Automaton<Pair, HashSet<String>> {
     }
 
     private boolean isAcceptLastStateSet(HashSet<String> stateSet){
-
         for (String s : stateSet) {
             if (F.contains(s))
                 return true;

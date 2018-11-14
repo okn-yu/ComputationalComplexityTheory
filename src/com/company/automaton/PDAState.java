@@ -7,41 +7,42 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.HashMap;
 
-public class PDAState {
+public class PDAState{
 
     private String stateName;
-    private Deque<Character> stack = new ArrayDeque<>();
+    private Deque<Character> stack;
 
     public PDAState(String stateName){
         this.stateName = stateName;
+        this.stack = new ArrayDeque<>();
     }
+
 
     public String getStateName(){
         return stateName;
     }
 
     public HashSet<PDAState> nextStateSet(Character input, HashMap<Triple, HashSet<Pair>> delta){
-
         HashSet<PDAState> nextStateSet = new HashSet<>();
-
         for(HashMap.Entry<Triple, HashSet<Pair>> entry: delta.entrySet()) {
             Triple triple = entry.getKey();
-            Character c = (Character) triple.getSecElm();
+            Character cha = (Character) triple.getSecElm();
             Character s = (Character) triple.getThridElm();
 
-            if (checkInput(input, c) && checkStack(s)) {
-                HashSet<Pair> pairs = delta.get(new Triple<>(stateName, c, s));
+            System.out.println("nextStateSet cha=" + cha + ", s=" + s +  ", input=" + input);
+            if (checkInput(input, cha) && checkStack(s)) {
+                HashSet<Pair> pairs = delta.get(new Triple<>(stateName, cha, s));
 
-                for(Pair pair : pairs){
-                    String nextStateName = (String)pair.getFirstElm();
-                    if(s != 'e')
-                        stack.push(s);
-
+                for (Pair pair : pairs) {
+                    nextStateSet.add(this);
+                    // need try & catch!
+                    //PDAState s1 = this.clone();
                 }
+            }else{
+                System.out.println("delta not found. SKIP!");
             }
-
         }
-
+        System.out.println(nextStateSet);
         return nextStateSet;
     }
 
@@ -50,10 +51,9 @@ public class PDAState {
     }
 
     private boolean checkStack(Character s){
-        if(s == 'e')
+        if(s == 'e') {
             return true;
-
-        if(s == stack.getFirst()){
+        }else if(s == stack.getFirst()){
             stack.pop();
             return true;
         }else {
@@ -61,8 +61,8 @@ public class PDAState {
         }
     }
 
-    private PDAState nextState(Pair pair){
+    @Override
+    public String toString(){
+        return "StateName: " + this.stateName + ", " + "stackValue: " + stack;
     }
-
-
 }

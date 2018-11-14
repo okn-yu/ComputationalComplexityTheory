@@ -12,7 +12,6 @@ import java.util.Deque;
 public class PDA extends Automaton<Triple, HashSet<Pair>>{
 
     private final HashSet<Character> Gamma;
-
         public PDA(String name, HashSet<String> Q, HashSet<Character> Shigma, HashSet<Character> Gamma, HashMap<Triple, HashSet<Pair>> delta, String q0, HashSet<String> F) {
         super(name, Q, Shigma, delta, q0, F);
         this.Gamma = Gamma;
@@ -20,7 +19,6 @@ public class PDA extends Automaton<Triple, HashSet<Pair>>{
 
     @Override
     public boolean isAccept(String input) {
-
         String currentString = input;
         HashSet<PDAState> currentStateSet = new HashSet<PDAState>(){{
             add(new PDAState(q0));
@@ -34,15 +32,11 @@ public class PDA extends Automaton<Triple, HashSet<Pair>>{
             HashSet<PDAState> nextStateSet = new HashSet<>();
             Character currentChar = currentString.charAt(0);
 
-            //currentStateSet.addAll(acceptEpsilonCharacter(currentStateSet));
-
-            for (PDAState state : currentStateSet) {
-                //Triple triple = new Triple<String, Character, Character>((String) state.getFirstElm(), currentChar, (Character) state.getSecElm());
-                //if (Objects.nonNull(getNextState(triple)))
-                //    nextStateSet.addAll(getNextState(triple));
-            }
+            currentStateSet = getNextState(currentStateSet, 'e');
+            nextStateSet = getNextState(currentStateSet, currentChar);
 
             if (nextStateSet.isEmpty()) {
+                System.out.println("Empty stateSet.");
                 return false;
             } else {
                 currentStateSet = nextStateSet;
@@ -51,45 +45,21 @@ public class PDA extends Automaton<Triple, HashSet<Pair>>{
             currentString = currentString.substring(1);
             System.out.println();
         }
-
         System.out.println("lastStateSet: " + currentStateSet);
-        //return isAcceptLastStateSet(currentStateSet);
-        return true;
+        return isAcceptLastStateSet(currentStateSet);
     }
 
-/*    private HashSet<Pair> acceptEpsilonCharacter(HashSet<PDAState> currentStateSet){
-
-        HashSet<Pair> additionalStateSet = new HashSet<>();
-
-        for(PDAState state : currentStateSet){
-            Deque<Character> stack = (Deque<Character>)state.getSecElm();
-            Character currentStack = stack.getFirst();
-            System.out.println(currentStack);
-            String currentState = (String)state.getFirstElm();
-            Triple triple = new Triple<>(currentState, 'e', currentStack);
-            if(delta.containsKey(triple)) {
-                pair = getNextState(triple);
-                stackValue = (Character) pair.getSecElm();
-                Pair newPair = new Pair();
-            }
-        }
-        return additionalStateSet;
-    }*/
-
     private HashSet<PDAState> getNextState(HashSet<PDAState> currentStateSet, Character c) {
-
         HashSet<PDAState> nextStateSet = new HashSet<>();
 
         for(PDAState pdaState : currentStateSet){
             HashMap<Triple, HashSet<Pair >> filteredDelta = filterDelta(pdaState.getStateName());
             nextStateSet.addAll(pdaState.nextStateSet(c, filteredDelta));
         }
-
         return nextStateSet;
     }
 
     private HashMap<Triple, HashSet<Pair>> filterDelta(String stateName) {
-
         HashMap<Triple, HashSet<Pair>> filteredDelta = new HashMap<>();
 
         for(HashMap.Entry<Triple, HashSet<Pair>> entry: delta.entrySet()){

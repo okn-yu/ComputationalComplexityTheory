@@ -14,6 +14,18 @@ public class Triple<S, T, U> {
         this.thridElm = thirdElm;
     }
 
+    public S getFirstElm(){
+        return firstElm;
+    }
+
+    public T getSecElm(){
+        return secElm;
+    }
+
+    public U getThridElm(){
+        return thridElm;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Triple) {

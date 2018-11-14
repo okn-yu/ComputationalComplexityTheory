@@ -36,7 +36,7 @@ abstract public class Automaton<S, D> {
         }
     }
 
-    abstract protected D getNextState(S input);
+    //protected D getNextState(S input);
     abstract public boolean isAccept(String inputString);
     abstract public String convert2Tape();
     abstract public String toString();
