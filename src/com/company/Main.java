@@ -63,6 +63,6 @@ public class Main {
         Collections.addAll(F, "q1", "q4");
 
         Automaton pda = new PDA(name, Q, Shigma, Gamma, delta, q0, F);
-        System.out.println(pda.isAccept("000111"));
+        System.out.println(pda.isAccept("00000000001111111111"));
     }
 }

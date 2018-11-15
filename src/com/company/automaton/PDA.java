@@ -29,11 +29,19 @@ public class PDA extends Automaton<Triple, HashSet<Pair>>{
             System.out.println("currentString: " + currentString);
             System.out.println("currentStateSet:" + currentStateSet);
 
-            HashSet<PDAState> nextStateSet = new HashSet<>();
             Character currentChar = currentString.charAt(0);
 
-            currentStateSet = getNextState(currentStateSet, 'e');
+            System.out.println("Apply input e.");
+            currentStateSet.addAll(getNextState(currentStateSet, 'e'));
+
+            System.out.println(currentStateSet);
+
+
+            System.out.println("Apply input " + currentChar + ".");
+            HashSet<PDAState> nextStateSet = new HashSet<>();
             nextStateSet = getNextState(currentStateSet, currentChar);
+
+            System.out.println("received: " + nextStateSet);
 
             if (nextStateSet.isEmpty()) {
                 System.out.println("Empty stateSet.");
@@ -45,6 +53,7 @@ public class PDA extends Automaton<Triple, HashSet<Pair>>{
             currentString = currentString.substring(1);
             System.out.println();
         }
+        currentStateSet.addAll(getNextState(currentStateSet, 'e'));
         System.out.println("lastStateSet: " + currentStateSet);
         return isAcceptLastStateSet(currentStateSet);
     }
@@ -70,6 +79,7 @@ public class PDA extends Automaton<Triple, HashSet<Pair>>{
     }
 
     private boolean isAcceptLastStateSet(HashSet<PDAState> stateSet){
+
         for (PDAState s : stateSet) {
             if (F.contains((String)s.getStateName()))
                 return true;
