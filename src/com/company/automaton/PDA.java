@@ -9,10 +9,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Deque;
 
-public class PDA extends Automaton<Triple, HashSet<Pair>>{
+public class PDA extends Automaton<Triple, HashSet<Pair>> {
 
     private final HashSet<Character> Gamma;
-        public PDA(String name, HashSet<String> Q, HashSet<Character> Shigma, HashSet<Character> Gamma, HashMap<Triple, HashSet<Pair>> delta, String q0, HashSet<String> F) {
+
+    public PDA(String name, HashSet<String> Q, HashSet<Character> Shigma, HashSet<Character> Gamma, HashMap<Triple, HashSet<Pair>> delta, String q0, HashSet<String> F) {
         super(name, Q, Shigma, delta, q0, F);
         this.Gamma = Gamma;
     }
@@ -20,68 +21,42 @@ public class PDA extends Automaton<Triple, HashSet<Pair>>{
     @Override
     public boolean isAccept(String input) {
         String currentString = input;
-        HashSet<PDAState> currentStateSet = new HashSet<PDAState>(){{
+        HashSet<PDAState> currentStateSet = new HashSet<PDAState>() {{
             add(new PDAState(q0));
         }};
 
         while (!currentString.isEmpty()) {
-
-            System.out.println("currentString: " + currentString);
-            System.out.println("currentStateSet:" + currentStateSet);
-
             Character currentChar = currentString.charAt(0);
-
-            System.out.println("Apply input e.");
             currentStateSet.addAll(getNextState(currentStateSet, 'e'));
 
-            System.out.println(currentStateSet);
-
-
-            System.out.println("Apply input " + currentChar + ".");
             HashSet<PDAState> nextStateSet = new HashSet<>();
             nextStateSet = getNextState(currentStateSet, currentChar);
 
-            System.out.println("received: " + nextStateSet);
-
-            if (nextStateSet.isEmpty()) {
-                System.out.println("Empty stateSet.");
+            if (nextStateSet.isEmpty())
                 return false;
-            } else {
-                currentStateSet = nextStateSet;
-            }
 
+            currentStateSet = nextStateSet;
             currentString = currentString.substring(1);
-            System.out.println();
         }
-        currentStateSet.addAll(getNextState(currentStateSet, 'e'));
-        System.out.println("lastStateSet: " + currentStateSet);
+
         return isAcceptLastStateSet(currentStateSet);
     }
 
     private HashSet<PDAState> getNextState(HashSet<PDAState> currentStateSet, Character c) {
         HashSet<PDAState> nextStateSet = new HashSet<>();
 
-        for(PDAState pdaState : currentStateSet){
-            HashMap<Triple, HashSet<Pair >> filteredDelta = filterDelta(pdaState.getStateName());
-            nextStateSet.addAll(pdaState.nextStateSet(c, filteredDelta));
+        for (PDAState pdaState : currentStateSet) {
+            nextStateSet.addAll(pdaState.nextStateSet(c, delta));
         }
         return nextStateSet;
     }
 
-    private HashMap<Triple, HashSet<Pair>> filterDelta(String stateName) {
-        HashMap<Triple, HashSet<Pair>> filteredDelta = new HashMap<>();
+    private boolean isAcceptLastStateSet(HashSet<PDAState> stateSet) {
 
-        for(HashMap.Entry<Triple, HashSet<Pair>> entry: delta.entrySet()){
-            if (stateName.equals((String)entry.getKey().getFirstElm()))
-                filteredDelta.put(entry.getKey(), entry.getValue());
-        }
-        return filteredDelta;
-    }
-
-    private boolean isAcceptLastStateSet(HashSet<PDAState> stateSet){
+        stateSet.addAll(getNextState(stateSet, 'e'));
 
         for (PDAState s : stateSet) {
-            if (F.contains((String)s.getStateName()))
+            if (F.contains((String) s.getStateName()))
                 return true;
         }
         return false;
@@ -96,5 +71,4 @@ public class PDA extends Automaton<Triple, HashSet<Pair>>{
     public String toString() {
         return "test";
     }
-
 }
