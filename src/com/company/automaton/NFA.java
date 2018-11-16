@@ -21,32 +21,37 @@ public class NFA extends Automaton<Pair, HashSet<String>> {
         while (!currentString.isEmpty()) {
             System.out.println("currentString: " + currentString);
             System.out.println("currentStateSet:" + currentStateSet);
-            HashSet<String> nextStateSet = new HashSet<String>();
-            Character currentChar = currentString.charAt(0);
 
-            for (String state : currentStateSet) {
-                nextStateSet.addAll(getNextState(new Pair<String, Character>(state, currentChar)));
-                nextStateSet.addAll(getNextState(new Pair<String, Character>(state, 'e')));
-            }
+            Character currentChar = currentString.charAt(0);
+            currentStateSet.addAll(getNextStateSet(currentStateSet, 'e'));
+
+            HashSet<String> nextStateSet = new HashSet<String>();
+            nextStateSet = (getNextStateSet(currentStateSet, currentChar));
+
             currentStateSet = nextStateSet;
             currentString = currentString.substring(1);
             System.out.println();
         }
 
-        System.out.println("lastStateSet: " + currentStateSet);
         return isAcceptLastStateSet(currentStateSet);
     }
 
-    protected HashSet<String> getNextState(Pair input) {
-        HashSet<String> nextStateSet = delta.get(input);
-        if(Objects.nonNull(nextStateSet)) {
-            return nextStateSet;
-        } else {
-            return new HashSet<String>();
+    private HashSet<String> getNextStateSet(HashSet<String> stateSet, Character input){
+        HashSet<String> returnStateSet = new HashSet<String>();
+
+        for(String state : stateSet){
+            HashSet<String> nextStateSet = delta.get(new Pair<String, Character>(state, input));
+
+            if(Objects.nonNull(nextStateSet))
+                returnStateSet.addAll(nextStateSet);
         }
+        return returnStateSet;
     }
 
     private boolean isAcceptLastStateSet(HashSet<String> stateSet){
+        stateSet.addAll(getNextStateSet(stateSet, 'e'));
+        System.out.println("lastStateSet: " + stateSet);
+
         for (String s : stateSet) {
             if (F.contains(s))
                 return true;

@@ -1,13 +1,11 @@
 package com.company.automaton;
 
-
 import com.company.util.Pair;
 import com.company.util.Triple;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
-import java.util.Deque;
+
 
 public class PDA extends Automaton<Triple, HashSet<Pair>> {
 
@@ -38,13 +36,11 @@ public class PDA extends Automaton<Triple, HashSet<Pair>> {
             currentStateSet = nextStateSet;
             currentString = currentString.substring(1);
         }
-
         return isAcceptLastStateSet(currentStateSet);
     }
 
     private HashSet<PDAState> getNextState(HashSet<PDAState> currentStateSet, Character c) {
         HashSet<PDAState> nextStateSet = new HashSet<>();
-
         for (PDAState pdaState : currentStateSet) {
             nextStateSet.addAll(pdaState.nextStateSet(c, delta));
         }
@@ -52,7 +48,6 @@ public class PDA extends Automaton<Triple, HashSet<Pair>> {
     }
 
     private boolean isAcceptLastStateSet(HashSet<PDAState> stateSet) {
-
         stateSet.addAll(getNextState(stateSet, 'e'));
 
         for (PDAState s : stateSet) {

@@ -10,11 +10,12 @@ import com.company.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        /*
-        Automaton nfa = NFATest.NFATest();
-        System.out.println(nfa.isAccept("0111"));
-        */
 
+        Automaton nfa = NFATest.NFATest();
+        System.out.println(nfa.isAccept("0101"));
+
+
+        /*
         String name = "test";
         HashSet<String> Q = new HashSet<>();
         Collections.addAll(Q, "q1", "q2", "q3", "q4");
@@ -24,6 +25,7 @@ public class Main {
 
         HashSet<Character> Gamma = new HashSet<>();
         Collections.addAll(Gamma, '0', '$');
+        */
 
         /*
          Triple: stateName, inputCharacter, stackTopValue.
@@ -40,7 +42,7 @@ public class Main {
           if c != 'e' and d != 'e': change StackValue from 'c' to 'e'.
          */
 
-        HashMap<Triple, HashSet<Pair>> delta = new HashMap<>();
+/*        HashMap<Triple, HashSet<Pair>> delta = new HashMap<>();
         delta.put(new Triple<>("q1", 'e', 'e'), new HashSet<Pair>() {{
             add(new Pair<>("q2", '$'));
         }});
@@ -63,6 +65,6 @@ public class Main {
         Collections.addAll(F, "q1", "q4");
 
         Automaton pda = new PDA(name, Q, Shigma, Gamma, delta, q0, F);
-        System.out.println(pda.isAccept("000000000000011111"));
+        System.out.println(pda.isAccept("000000000000011111"));*/
     }
 }
