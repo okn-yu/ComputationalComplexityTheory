@@ -26,18 +26,24 @@ public class PDAState implements Cloneable {
 
         for (HashMap.Entry<Triple, HashSet<Pair>> entry : delta.entrySet()) {
             Triple triple = entry.getKey();
-            String srcStateName = (String) triple.getFirstElm();
-            Character srcInput = (Character) triple.getSecElm();
-            Character srcStackVal = (Character) triple.getThridElm();
 
-            if (checkStateName(srcStateName) && checkInput(receivedInput, srcInput) && checkStackVal(srcStackVal)) {
-                HashSet<Pair> pairs = delta.get(new Triple<>(stateName, srcInput, srcStackVal));
+            if (checkTriple(triple, receivedInput)) {
+                HashSet<Pair> pairs = delta.get(triple);
                 for (Pair pair : pairs) {
-                    nextStateSet.add(nextState(pair, srcStackVal));
+                    nextStateSet.add(nextState(pair, (Character) triple.getThridElm()));
                 }
             }
         }
         return nextStateSet;
+    }
+
+    private boolean checkTriple(Triple triple, Character receivedInput){
+        String srcStateName = (String) triple.getFirstElm();
+        Character srcInput = (Character) triple.getSecElm();
+        Character srcStackVal = (Character) triple.getThridElm();
+
+        return checkStateName(srcStateName) && checkInput(receivedInput, srcInput) && checkStackVal(srcStackVal);
+
     }
 
     private boolean checkStateName(String srcStateName){
