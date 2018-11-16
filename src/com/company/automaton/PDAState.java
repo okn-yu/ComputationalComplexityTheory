@@ -27,11 +27,12 @@ public class PDAState implements Cloneable {
         for (HashMap.Entry<Triple, HashSet<Pair>> entry : delta.entrySet()) {
             Triple triple = entry.getKey();
 
-            if (checkTriple(triple, receivedInput)) {
-                HashSet<Pair> pairs = delta.get(triple);
-                for (Pair pair : pairs) {
-                    nextStateSet.add(nextState(pair, (Character) triple.getThridElm()));
-                }
+            if (!checkTriple(triple, receivedInput))
+                continue;
+
+            HashSet<Pair> pairs = delta.get(triple);
+            for (Pair pair : pairs) {
+                nextStateSet.add(nextState(pair, (Character) triple.getThridElm()));
             }
         }
         return nextStateSet;
@@ -43,7 +44,6 @@ public class PDAState implements Cloneable {
         Character srcStackVal = (Character) triple.getThridElm();
 
         return checkStateName(srcStateName) && checkInput(receivedInput, srcInput) && checkStackVal(srcStackVal);
-
     }
 
     private boolean checkStateName(String srcStateName){

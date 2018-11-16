@@ -10,7 +10,7 @@ public class Main {
         System.out.println(nfa.isAccept("0101"));
 
         Automaton pda = PDATest.PDATest();
-        System.out.println(pda.isAccept("000000111111"));
+        System.out.println(pda.isAccept("0000111111"));
 
     }
 }
