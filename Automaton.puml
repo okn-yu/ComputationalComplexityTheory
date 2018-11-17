@@ -1,41 +1,31 @@
 @startuml
 
 abstract Automaton {
-- String name;
 - HashSet<String> Q;
 - HashSet<Character>  Sigma;
 - HashMap<S, D> delta;
 - String q0;
 - HashSet<String> F;
-
 + Automaton(StateSet Q);
-
 + {abstract} boolean isAccept(String inputString);
 + String convert2Tape();
-+ String toString();
-
 }
 
-Automaton <|-- DFA
-class DFA {
-+ boolean isAccept(String inputString);
+Automaton <|-- Deterministic_Finite_Automaton
+class Deterministic_Finite_Automaton {
 }
 
-Automaton <|-- NFA
-class NFA {
-- HashSet<String> acceptEpsilonCharacter(HashSet<String> currentStateSet);
+Deterministic_Finite_Automaton <|-- Non_Deterministic_Finite_Automaton
+class  Non_Deterministic_Finite_Automaton {
 + DFA convert2DFA();
-+ boolean isAccept(String inputString);
 }
 
-NFA <|-- PDA
-class PDA {
+Non_Deterministic_Finite_Automaton <|-- Push_Down_Automaton
+class Push_Down_Automaton {
 + HashSet<String> Gamma;
-- HashSet<Pair> acceptEpsilonCharacter(HashSet<Pair> currentStateSet);
-+ boolean isAccept(String inputString);
 }
 
-PDAState --- PDA
+PDAState --- Push_Down_Automaton
 
 class PDAState {
 - String stateName;
@@ -46,14 +36,11 @@ class PDAState {
 + PDAState updatePDAState(Pair pair);
 }
 
-Automaton <-- TuringMaschine
-
-class TuringMaschine{
-- String name;
+class Turing_Maschine{
 - HashSet<String> Q;
 - HashSet<String> Sigma;
 - HashSet<String> Gamma;
-- HashMap<Pair<String, String>, Triplet<String, String, Character>> delta;
+- HashMap<Pair<String, Character>, Triplet<String, Character, Character>> delta;
 - String q0;
 - Sttring qAccept;
 - String qReject;
@@ -64,10 +51,21 @@ class TuringMaschine{
 + boolean isAccept(String inputTape);
 }
 
-class Pair {
+Turing_Maschine <|-- Non_Deterministic_Turing_Maschine
+
+class Non_Deterministic_Turing_Maschine{
 }
 
-class Triple {
+Tape --- Turing_Maschine
+
+class Tape{
+- ArrayList<Character> tape;
+- int headPosition;
+
++ Tape(ArrayList<Character> tape);
++ Character cha read();
++ void write(Character cha);
++ void move(Character Direction);
 }
 
 @enduml

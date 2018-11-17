@@ -1,8 +1,6 @@
 package com.company.automaton;
 
-
 import com.company.util.Pair;
-
 import java.util.*;
 
 public class NFA extends Automaton<Pair, HashSet<String>> {
