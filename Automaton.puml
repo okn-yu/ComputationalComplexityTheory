@@ -36,7 +36,7 @@ class PDAState {
 + PDAState updatePDAState(Pair pair);
 }
 
-class Turing_Maschine{
+abstract class Turing_Maschine{
 - HashSet<String> Q;
 - HashSet<String> Sigma;
 - HashSet<String> Gamma;
@@ -51,7 +51,12 @@ class Turing_Maschine{
 + boolean isAccept(String inputTape);
 }
 
-Turing_Maschine <|-- Non_Deterministic_Turing_Maschine
+Turing_Maschine <|-- Deterministic_Turing_Maschine
+
+class Deterministic_Turing_Maschine{
+}
+
+Deterministic_Turing_Maschine <|-- Non_Deterministic_Turing_Maschine
 
 class Non_Deterministic_Turing_Maschine{
 }

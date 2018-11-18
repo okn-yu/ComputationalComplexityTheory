@@ -1,7 +1,7 @@
 package com.company;
 
-import com.company.automaton.Automaton;
-import com.company.TM.TM;
+import com.company.TM.DTM;
+import com.company.TM.TuringMashcine;
 import com.company.util.Pair;
 import com.company.util.Triple;
 
@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class TMTest {
-    public static TM TMTest() {
+public class DTMTest {
+    public static DTM DTMTest() {
 
         String name = "test";
         HashSet<String> Q = new HashSet<>();
@@ -98,6 +98,6 @@ public class TMTest {
         String qAccept = "qAccept";
         String qReject = "qReject";
 
-        return new TM(name, Q, Shigma, Gamma, delta, q0, qAccept, qReject);
+        return new DTM(name, Q, Shigma, Gamma, delta, q0, qAccept, qReject);
     }
 }
