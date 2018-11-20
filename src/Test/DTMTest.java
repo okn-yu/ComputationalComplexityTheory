@@ -21,21 +21,6 @@ public class DTMTest {
         HashSet<Character> Gamma = new HashSet<>();
         Collections.addAll(Gamma, '0', 'x', '_');
 
-        /*
-         Triple: stateName, inputCharacter, stackTopValue.
-         Pair: stateName, stackTopValue.
-         delta a, b, c -> d, e
-          a: startState
-          b: inputCharacter
-          c: stackTopValue
-          d: endState
-          e: stackTopValue
-          if b == 'e': transfers unconditionally.
-          if c == 'e': No Pop. Push only.
-          if e == 'e': No Push. Pop only.
-          if c != 'e' and d != 'e': change StackValue from 'c' to 'e'.
-         */
-
         // q1 delta:
         HashMap<Pair, Triple> delta = new HashMap<>();
         delta.put(new Pair<>("q1", '0'), new Triple<> ("q2", '_', 'R'));
