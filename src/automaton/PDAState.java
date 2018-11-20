@@ -1,6 +1,6 @@
-package com.company.automaton;
+package automaton;
 
-import com.company.util.*;
+import util.*;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -25,14 +25,14 @@ public class PDAState implements Cloneable {
         HashSet<PDAState> nextStateSet = new HashSet<>();
 
         for (HashMap.Entry<Triple, HashSet<Pair>> entry : delta.entrySet()) {
-            Triple triple = entry.getKey();
+            Triple<String, Character, Character> triple = entry.getKey();
 
             if (!checkTriple(triple, receivedInput))
                 continue;
 
             HashSet<Pair> pairs = delta.get(triple);
             for (Pair pair : pairs) {
-                nextStateSet.add(nextState(pair, (Character) triple.getThridElm()));
+                nextStateSet.add(nextState(pair, triple.getThridElm()));
             }
         }
         return nextStateSet;

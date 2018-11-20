@@ -1,4 +1,4 @@
-package com.company.util;
+package util;
 
 import java.util.Objects;
 
@@ -40,5 +40,10 @@ public class Triple<S, T, U> {
     public int hashCode() {
         return Objects.hash(firstElm, secElm, thridElm);
     }
+
+    public String toString(){
+        return "FirstElm: " + getFirstElm() + ", " + "SecElm: " + getSecElm() + ", " + "thirdElm: " + getThridElm();
+    }
+
 
 }

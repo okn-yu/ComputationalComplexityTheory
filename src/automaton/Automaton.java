@@ -1,10 +1,7 @@
-package com.company.automaton;
+package automaton;
 
-import java.rmi.NoSuchObjectException;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.HashMap;
-import java.util.Objects;
 
 abstract public class Automaton<S, D> {
 

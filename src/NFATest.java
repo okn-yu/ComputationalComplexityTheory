@@ -1,8 +1,6 @@
-package com.company;
-
-import com.company.automaton.Automaton;
-import com.company.automaton.NFA;
-import com.company.util.Pair;
+import automaton.Automaton;
+import automaton.NFA;
+import util.Pair;
 
 import java.util.Collections;
 import java.util.HashMap;

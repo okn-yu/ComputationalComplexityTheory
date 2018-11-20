@@ -1,7 +1,7 @@
-package com.company.automaton;
+package automaton;
 
-import com.company.util.Pair;
-import com.company.util.Triple;
+import util.Pair;
+import util.Triple;
 
 import java.util.HashMap;
 import java.util.HashSet;

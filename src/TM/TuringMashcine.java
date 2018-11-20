@@ -1,12 +1,9 @@
-package com.company.TM;
+package TM;
 
-import com.company.automaton.PDAState;
-import com.company.util.Pair;
-import com.company.util.Triple;
+import util.Pair;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.ArrayList;
 
 abstract public class TuringMashcine <T> {
 
@@ -14,7 +11,7 @@ abstract public class TuringMashcine <T> {
     protected final HashSet<String> Q;
     protected final HashSet<Character> Shigma;
     protected final HashSet<Character> Gamma;
-    protected final HashMap<Pair, HashSet<Triple>> delta;
+    protected final HashMap<Pair, T> delta;
     protected final String q0;
     protected final String qAccept;
     protected final String qReject;
@@ -41,7 +38,7 @@ abstract public class TuringMashcine <T> {
 
     abstract public boolean isAccept(Tape tape);
 
-    abstract public HashSet<PDAState> getNextState(HashSet<PDAState> currentStateSet, Character c);
+    abstract public T getNextState(String currentStateSet, Character c);
 
     @Override
     public String toString() {

@@ -1,15 +1,20 @@
-package com.company.TM;
+package TM;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Tape {
 
-    private ArrayList<Character> tape = new ArrayList<>();
     private int headPosition;
+    List<Character> tape = new ArrayList<Character>();
 
-    public Tape(ArrayList<Character> tape){
-        this.tape = tape;
-        this.headPosition = 0;
+    public Tape(String str){
+
+        for(char c : str.toCharArray()){
+            tape.add(c);
+        }
+
+        headPosition = 0;
     }
 
     public void write(Character cha){
@@ -28,7 +33,7 @@ public class Tape {
                 break;
 
             case 'L':
-                if(headPosition >= 0){
+                if(headPosition == 0){
                     break;
                 } else {
                     headPosition--;
@@ -38,5 +43,10 @@ public class Tape {
             default:
                 throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString(){
+        return tape.toString();
     }
 }

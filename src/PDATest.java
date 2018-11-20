@@ -1,11 +1,9 @@
-package com.company;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import com.company.automaton.*;
-import com.company.util.*;
+import automaton.*;
+import util.*;
 
 public class PDATest {
     public static Automaton PDATest() {
