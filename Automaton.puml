@@ -1,6 +1,6 @@
 @startuml
 
-abstract Automaton {
+abstract Automaton <S, D> {
 - HashSet<String> Q;
 - HashSet<Character>  Sigma;
 - HashMap<S, D> delta;
@@ -36,11 +36,11 @@ class PDAState {
 + PDAState updatePDAState(Pair pair);
 }
 
-abstract class Turing_Maschine{
+abstract class Turing_Maschine <D>{
 - HashSet<String> Q;
 - HashSet<String> Sigma;
 - HashSet<String> Gamma;
-- HashMap<Pair<String, Character>, Triplet<String, Character, Character>> delta;
+- HashMap<Pair<String, Character>, D> delta;
 - String q0;
 - Sttring qAccept;
 - String qReject;
