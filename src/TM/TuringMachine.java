@@ -5,7 +5,7 @@ import Utill.Pair;
 import java.util.HashMap;
 import java.util.HashSet;
 
-abstract public class TuringMashcine <T> {
+abstract public class TuringMachine<T> {
 
     protected final String name;
     protected final HashSet<String> Q;
@@ -16,7 +16,7 @@ abstract public class TuringMashcine <T> {
     protected final String qAccept;
     protected final String qReject;
 
-    public TuringMashcine(String name, HashSet<String> Q, HashSet<Character> Shigma, HashSet<Character> Gamma, HashMap<Pair, T> delta, String q0, String qAccept, String qReject) {
+    public TuringMachine(String name, HashSet<String> Q, HashSet<Character> Shigma, HashSet<Character> Gamma, HashMap<Pair, T> delta, String q0, String qAccept, String qReject) {
         this.name = name;
         this.Q = Q;
         this.Shigma = Shigma;

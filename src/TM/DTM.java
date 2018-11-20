@@ -6,7 +6,7 @@ import Utill.Triple;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class DTM extends TuringMashcine <Triple>{
+public class DTM extends TuringMachine<Triple> {
 
     public DTM(String name, HashSet<String> Q, HashSet<Character> Shigma, HashSet<Character> Gamma, HashMap<Pair, Triple> delta, String q0, String qAccept, String qReject) {
         super(name, Q, Shigma, Gamma, delta, q0, qAccept,qReject);
@@ -38,11 +38,11 @@ public class DTM extends TuringMashcine <Triple>{
             System.out.println();
         }
         return false;
-    };
+    }
 
     public Triple getNextState(String currentState, Character currentCharacter){
         return delta.get(new Pair(currentState, currentCharacter));
-    };
+    }
 
     @Override
     public String toString() {

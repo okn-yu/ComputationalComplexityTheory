@@ -1,5 +1,5 @@
-import TM.TuringMashcine;
 import TM.Tape;
+import TM.TuringMachine;
 import Test.DTMTest;
 
 public class Main {
@@ -16,7 +16,7 @@ public class Main {
         System.out.println(pda.isAccept("0000111111"));
         */
 
-        TuringMashcine dtm = DTMTest.DTMTest();
+        TuringMachine dtm = DTMTest.DTMTest();
         System.out.println(dtm.isAccept(new Tape("0000_")));
 
     }
