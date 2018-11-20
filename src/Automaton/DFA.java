@@ -1,10 +1,10 @@
-package automaton;
+package Automaton;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 
-import util.*;
+import Utill.*;
 
 public class DFA extends Automaton <Pair, String>{
 

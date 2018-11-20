@@ -1,6 +1,6 @@
-package automaton;
+package Automaton;
 
-import util.*;
+import Utill.*;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

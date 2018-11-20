@@ -1,4 +1,4 @@
-package automaton;
+package Automaton;
 
 import java.util.HashSet;
 import java.util.HashMap;

@@ -1,17 +1,18 @@
 import TM.TuringMashcine;
 import TM.Tape;
+import Test.DTMTest;
 
 public class Main {
 
     public static void main(String[] args) {
 
         /*
-        Automaton nfa = NFATest.NFATest();
+        Automaton nfa = Test.NFATest.Test.NFATest();
         System.out.println(nfa.isAccept("0101"));
         */
 
         /*
-        Automaton pda = PDATest.PDATest();
+        Automaton pda = Test.PDATest.Test.PDATest();
         System.out.println(pda.isAccept("0000111111"));
         */
 

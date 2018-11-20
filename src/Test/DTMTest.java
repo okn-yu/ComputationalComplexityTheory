@@ -1,6 +1,8 @@
+package Test;
+
 import TM.DTM;
-import util.Pair;
-import util.Triple;
+import Utill.Pair;
+import Utill.Triple;
 
 import java.util.Collections;
 import java.util.HashMap;

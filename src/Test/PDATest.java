@@ -1,9 +1,11 @@
+package Test;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import automaton.*;
-import util.*;
+import Automaton.*;
+import Utill.*;
 
 public class PDATest {
     public static Automaton PDATest() {

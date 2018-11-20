@@ -1,6 +1,8 @@
-import automaton.Automaton;
-import automaton.NFA;
-import util.Pair;
+package Test;
+
+import Automaton.Automaton;
+import Automaton.NFA;
+import Utill.Pair;
 
 import java.util.Collections;
 import java.util.HashMap;
